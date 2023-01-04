@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import db from "./db"
 import routes from "./routes/index"
 import cors from "cors"
-import routes from './routes';
 import path from 'path';
 
 
