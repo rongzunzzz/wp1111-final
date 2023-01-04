@@ -28,7 +28,7 @@ const Text = styled.p`
     // font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 100%;
+    font-size: 140%;
     letter-spacing: 0.12em;
     text-transform: uppercase;
 
@@ -57,8 +57,14 @@ const Overview = () => {
                 {allTasks.map((t, i) => {
                     if (moment(t.dueDate).isBetween(todayDate, currDates[6])  || moment(t.dueDate).isSame(todayDate) ) {
                         return (
-                            <div key={i} style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-between', alignItems: 'center'}}>
-                                <p style={{fontWeight:'700', backgroundColor: '#67ADFF'}}>{t.courseName}</p>
+                            <div key={i} style={{
+                                display: 'flex', flexDirection: 'row', 
+                                width: '100%', justifyContent: 'space-between', alignItems: 'center'
+                            }}>
+                                <p style={{
+                                    fontWeight:'700', backgroundColor: '#67ADFF',
+                                    padding: '2%', borderRadius: '10%'
+                                }}>{t.courseName}</p>
                                 <p style={littleText}>{t.taskName}</p>
                                 <p style={littleText}>{t.dueDate}</p>
                             </div>  

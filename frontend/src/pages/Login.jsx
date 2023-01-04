@@ -1,5 +1,5 @@
 // hooks, functions
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useUserInfo } from '../hooks/useUserInfo';
 import { usePlanner } from '../hooks/usePlanner';
 import { useCourse } from '../hooks/useCourse';
@@ -27,12 +27,11 @@ const Login = () => {
     const [logInPassword, setLogInPassword] = useState("");
     const [firstLoginModalOpen, setFirstLoginModalOpen] = useState(false);
 
-    const { account, setAccount, 
-            password, setPassword, 
+    const { account, setAccount, setPassword, 
             setSignedIn, setNickName } = useUserInfo();
     const { setStartDate, setEndDate, 
-            allSchedules, setAllSchedules } = usePlanner();
-    const { allCourses, setAllCourses } = useCourse();
+            setAllSchedules } = usePlanner();
+    const { setAllCourses } = useCourse();
 
     const navigate = useNavigate();
 
@@ -141,7 +140,7 @@ const Login = () => {
                                 iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                 onChange={handlePasswordChange} />
                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly', alignContent:'center'}}>
-                    <Button onClick={navigateToSignUp} className='jumpTo'>註冊</Button>
+                    <Button onClick={navigateToSignUp} className='jumpTo'>去註冊</Button>
                     <Button onClick={() => {
                         if (logInAccount && logInPassword) handleLogin()
                     }} className='enterBtn'>登入</Button>
@@ -149,18 +148,7 @@ const Login = () => {
                 <FirstLoginModal
                     open={firstLoginModalOpen}
                     onCreate={ async (nickname, startDate, endDate) => { 
-                        const { success, message } = await editUser(account, nickname, startDate, endDate);
-                        // const {
-                        //     data: {
-                        //         success,
-                        //         message,
-                        //     }
-                        // } = await axios.post('/user', { 
-                        //     account,
-                        //     nickname, 
-                        //     startDate,
-                        //     endDate
-                        // }) 
+                        const { success, message } = await editUser(account, nickname, startDate, endDate); 
 
                         if (success) {
                             setNickName(nickname);

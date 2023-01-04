@@ -69,7 +69,7 @@ const SignUp = () => {
                                 iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                 onChange={handlePasswordChange} />
                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly'}}>
-                    <Button onClick={navigateToLogin} className='jumpTo'>登入</Button>
+                    <Button onClick={navigateToLogin} className='jumpTo'>去登入</Button>
                     <Button onClick={() => {
                         if (signUpAccount && signUpPassword) handleSignUp()
                     }} className='enterBtn'>註冊</Button>

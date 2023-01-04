@@ -87,7 +87,7 @@ const Setting = () => {
                 <div className="info-frame">
                     <div className="front-frame" style={{width: '45%'}}>
                         <CalendarOutlined style={{fontSize: '170%'}}/>
-                        <p style={{position: 'relative', right: '5%'}}>{startDate} ~ {endDate}</p>
+                        <p style={{position: 'relative', right: '12%'}}>{startDate} ~ {endDate}</p>
                     </div>
                     <Button type="primary" onClick={showDateModal} className="edit-btn">EDIT</Button>
                     <Modal title="Planner's Date" open={isDateModalOpen} onOk={handleEditDate} onCancel={handleCancelDate} okText="Edit" afterClose={handleCancelDate}>

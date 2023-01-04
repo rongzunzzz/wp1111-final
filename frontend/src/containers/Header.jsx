@@ -1,6 +1,7 @@
+// routes
 import { useNavigate } from 'react-router-dom';
+
 // hooks
-import { useState } from 'react'
 import { usePlanner } from '../hooks/usePlanner'
 import { useUserInfo } from '../hooks/useUserInfo'
 
@@ -11,7 +12,6 @@ import LeftMenu from './LeftMenu'
 import '../css/Header.css'
 import { Button, Avatar, Popover } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
-import { height } from '@mui/system';
 
 const iconStyle = {
     color: 'white', 
@@ -20,13 +20,13 @@ const iconStyle = {
 
 const btnStyle = {
     position: 'relative',
-    left: '21vw',
+    left: '20vw',
     borderRadius: '10px', 
     background: '#80B2FF', 
     fontFamily: 'Bowlby One',
     fontStyle: 'normal',
     fontWeight: '600',
-    fontSize: '80%',
+    fontSize: '100%',
     letterSpacing: '0.12em',
     color: '#FFFFFF',
 }
@@ -34,7 +34,9 @@ const btnStyle = {
 
 const Header = () => {
     const { nickName, setSignedIn } = useUserInfo();
-    const { currPage, menuUnfold, setMenuUnfold, setPsOpen } = usePlanner();
+    const { startDate, endDate, 
+            currPage, setCurrPage, 
+            menuUnfold, setMenuUnfold, setPsOpen } = usePlanner();
     const navigate = useNavigate();
     const navigateToWelcome = () => {
         navigate('/');
@@ -45,6 +47,7 @@ const Header = () => {
     }
 
     const navigateToSetting = () => {
+        setCurrPage("SETTINGS")
         navigate('/setting');
     }
 
@@ -58,9 +61,12 @@ const Header = () => {
     }
 
     const userContent = (
-        <div style={{width: '200px', height: '200px', color: '#1F3CA3'}}>
+        <div style={{width: '300px', height: '300px', color: '#1F3CA3'}}>
             <p style={{fontSize: '20px'}}>Name: {nickName}</p>
-            <SettingOutlined id='go-setting' onClick={navigateToSetting}/>
+            <p style={{fontSize: '20px'}}>Start Date: {startDate}</p>
+            <p style={{fontSize: '20px'}}>End Date: {endDate}</p>
+            <SettingOutlined id='go-setting' onClick={navigateToSetting}
+                             style={{marginTop: '40%'}}/>
         </div>
     )
 
@@ -74,12 +80,10 @@ const Header = () => {
             <LeftMenu />
             <h1 className='title'>{currPage}</h1>
             <Button style={btnStyle} onClick={handleLogOut}>Log Out</Button>
-            <Popover content={userContent} trigger="click" placement="bottomRight">
-                <Avatar className='photo-sticker' onClick={handlePhotoSticker} icon={<UserOutlined style={{fontSize: '3vh'}}/>}/>
+            <Popover content={userContent} trigger="click" placement="bottomRight" >
+                <Avatar className='photo-sticker' onClick={handlePhotoSticker} 
+                        icon={<UserOutlined style={{fontSize: '4vh'}}/>}/>
             </Popover>
-            {/* <div className='photo-sticker' onClick={handlePhotoSticker}>
-                
-            </div> */}
         </div>
     )
 }

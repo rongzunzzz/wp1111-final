@@ -152,7 +152,7 @@ const CourseBlock = ({ courseId, courseName, color, tasks }) => {
                         <p style={{textTransform: 'uppercase'}}>{t.taskName}</p>
                         <p style={{color: 'grey', fontSize:'70%'}}>{t.dueDate}</p>
                     </span>
-                    <span style={{color: '#4589ff'}}>{t.status? 'COMPLETED' : 'NOT COMPLETED'}</span>
+                    <span style={{color: '#4589ff', width: '30%'}}>{t.status? 'COMPLETED' : 'NOT COMPLETED'}</span>
                     <button value={t._id} onClick={() => {
                         handleDeleteTask(t._id)
                     }} style={{backgroundColor: 'Transparent', border: 'none'}}><DeleteOutlined style={taskBtnStyle} /></button>

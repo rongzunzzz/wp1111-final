@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     width: 84vw;
     height: 85vh;
     left: 15vw;
-    top: -78vh;
+    top: -79vh;
 
     background: #ECEDF7;
     border-radius: 15px;

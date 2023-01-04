@@ -45,6 +45,10 @@
     border-radius: 50%;
 
     background: #1F3CA3;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .photo-sticker:hover {

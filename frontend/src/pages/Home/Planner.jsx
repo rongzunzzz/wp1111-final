@@ -27,10 +27,18 @@ const btnStyle = {
     fontFamily: 'Bowlby One',
     fontStyle: 'normal',
     fontWeight: '600',
-    fontSize: '15px',
+    fontSize: '25px',
     letterSpacing: '0.12em',
     textTransform: 'uppercase',
     color: '#FFFFFF',
+}
+
+const LastNextWeekStyle = {
+    fontSize: '1.5vw',
+    color: '#2031938c', 
+    marginLeft: '1vw',
+    cursor: 'pointer', 
+    textDecoration: 'underline',
 }
 
 const Planner = () => {
@@ -39,7 +47,7 @@ const Planner = () => {
     const [daysForward, setDaysForward] = useState(0); // +7 each time
 
     const { account } = useUserInfo();
-    const { startDate, endDate, allSchedules, setAllSchedules, addSchedule } = usePlanner();
+    const { allSchedules, setAllSchedules, addSchedule } = usePlanner();
     const { currYear, setCurrYear,
             currMonth, setCurrMonth,
             setCurrDates,
@@ -103,12 +111,14 @@ const Planner = () => {
             <div className="planner-frame">
                 <div className="month-title">
                     <div style={{ position: 'relative', left: '16%'}}>
-                        <CaretLeftOutlined  style={{color: '#2031938c', cursor: 'pointer'}}
+                        <span style={LastNextWeekStyle} onClick={handleLastWeek}>LAST WEEK</span>
+                        <span style={LastNextWeekStyle} onClick={handleNextWeek}>NEXT WEEK</span>
+                        {/* <CaretLeftOutlined  style={{color: '#2031938c', cursor: 'pointer'}}
                                             onClick={handleLastWeek} />
                         <CaretRightOutlined  style={{color: '#2031938c', cursor: 'pointer'}}
-                                            onClick={handleNextWeek} />
+                                            onClick={handleNextWeek} /> */}
                     </div>
-                    <div style={{position: 'relative', left: '90vw', width: '6vw'}}>
+                    <div style={{position: 'relative', left: '70vw', width: '6vw'}}>
                         <p className="month-title-month">{numberToMonth(currMonth)}</p>
                     </div>
                 </div>
@@ -133,7 +143,6 @@ const Planner = () => {
                         data: {
                             success,
                             message, 
-                            // scheduleId, // no
                         }
                     } = await axios.post('/schedules', { 
                         account,
@@ -148,12 +157,11 @@ const Planner = () => {
 
                     if (success) {
                         const { getSuccess, message, schedules } = await getAllSchedules(account);
-                        if (getSuccess) setAllSchedules(schedules); // no need to pop message here
-
-                        // addSchedule(scheduleId, scheduleName, date, startTime, endTime, courseName, taskName);
+                        if (getSuccess) { // no need to pop message here
+                            setAllSchedules(schedules);
+                        }
                         setAddScheduleModalOpen(false);
                     }
-                    
                     popMessage(success, message);
                 }}
                 onCancel={() => {

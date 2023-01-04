@@ -1,6 +1,6 @@
 .menu {
     position: absolute;
-    width: 30vw;
+    width: 18vw;
     height: 92vh;
     left: 0px;
     top: 8vh;
@@ -20,7 +20,7 @@
     /* font-family: 'Archivo Black'; */
     font-style: normal;
     font-weight: 700;
-    font-size: 5vh;
+    font-size: 3vh;
     text-align: center;
     letter-spacing: 0.12em;
     text-transform: uppercase;
