@@ -1,0 +1,45 @@
+.menu {
+    position: absolute;
+    width: 30vw;
+    height: 92vh;
+    left: 0px;
+    top: 8vh;
+
+    background: #c0def9; /* 原始稿：B2CBF1 */
+
+    z-index: 3;
+}
+
+.menu-text {
+    position: absolute;
+    width: 200px;
+    height: 34px;
+    left: 58px;
+    /* top varies */
+
+    /* font-family: 'Archivo Black'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 5vh;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+.menu-text:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.menu-calender {
+    top: 10vh;
+}
+
+.menu-courses {
+    top: 20vh;
+}
+.menu-settings {
+    top: 70vh;
+}

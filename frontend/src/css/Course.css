@@ -1,0 +1,14 @@
+.course-card {
+    /* // position: absolute; */
+    width: 426px;
+    height: 375px;
+    /* // left: 52px; */
+    /* // top: 160px; */
+
+    background: #EDF0F5;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

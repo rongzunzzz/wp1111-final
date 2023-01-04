@@ -1,0 +1,123 @@
+.log-sign-btn{
+    position: absolute;
+    width: 200px;
+    /* height: 73px; */
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#wel-login {
+    left: 73px;
+    top: 50%;
+    background: linear-gradient(180deg, #8FC9FF 0%, #8194F5 100%);
+    filter: drop-shadow(4px 4px 8px rgba(80, 80, 80, 0.2));
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+
+    color: #FFFFFF;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+#wel-signup {
+    left: 301px;
+    top: 50%;
+    background: white;
+    filter: drop-shadow(4px 4px 8px rgba(112, 112, 112, 0.2));
+
+    /* font-family: 'Oxanium'; */
+    
+} 
+
+#wel-signup > p {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+
+    background: linear-gradient(180deg, #88B8FF 0%, #C9DEFF 99.99%, #C9DEFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.background {
+    /* Frame 6 */
+
+    position: absolute;
+    width: 1438px;
+    height: 1023px;
+    left: 0px;
+    top: 0px;
+
+    background: conic-gradient(from 180deg at 50% 50%, #DCE4FF 0deg, #E8F4FF 120deg, rgba(255, 255, 255, 0) 240deg, #FFFFFF 332.17deg, #DCE4FF 360deg);
+
+}
+
+#title{
+    /* Plan Your Week */
+
+    position: absolute;
+    width: 639px;
+    height: 63px;
+    left: 73px;
+    top: 56px;
+
+    /* font-family: 'Oxanium'; */
+    font-style: normal;
+    font-weight: 800;
+    font-size: 80px;
+
+    color: #A6B3F9;
+}
+
+#slogan {
+    position: absolute;
+    left: 80px;
+    top: 200px;
+
+    font-family: 'Oxanium';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 30px;
+    /* line-height: 50px; */
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+
+    color: #515E8B;
+
+
+}
+
+.wel-photo-frame {
+    height: 60vh;
+    width: 60vh;
+    position: relative;
+    top: 40vh;
+    left: 60vw;
+}
+
+#pic {
+    max-height: 100%;  
+    max-width: 100%; 
+    width: auto;
+    height: auto;
+    position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+}

@@ -1,0 +1,55 @@
+.setting-frame {
+    width: 40vw;
+    height: 50vh;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info-frame {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.front-frame {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-btn {
+    background: linear-gradient(180deg, #8FC9FF 0%, #8194F5 100%);
+    /* filter: drop-shadow(4px 4px 8px rgba(80, 80, 80, 0.2)); */
+    /* font-style: normal; */
+    font-weight: 800;
+    font-size: 60%;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    border-radius: 10px;
+
+    color: #FFFFFF;
+}
+
+p {
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+#go-setting {
+    position: relative;
+    top: 60%;
+    left: 85%;
+    font-size: 20px;
+    color: #1F3CA3;
+}

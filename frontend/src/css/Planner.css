@@ -1,0 +1,108 @@
+.planner-frame {
+    position: relative;
+    width: 100vw;
+    height: 92vh;
+    /* background-color: cadetblue; */
+    top: 8vh;
+}
+
+.add-btn-frame {
+    position: relative;
+    width: 14vw;
+    height: 81vh;
+    left: 1vw;
+    top: 3vh;
+    /* background-color: red; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+
+.month-title {
+    position: relative;
+    width: 100vw;
+    height: 3vh;
+    left: 0;
+    top: 1vh;
+    /* background-color: beige; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.month-title-month {
+    position: relative;
+    /* font-family: 'Heebo'; */
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100%;
+    /* line-height: 29px; */
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: #203293;
+}
+
+.month-title-week {
+    position: relative;
+    left: 10%;
+    /* font-family: 'Heebo'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100%;
+    /* line-height: 29px; */
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    color: #203293;
+}
+
+.month-change {
+    position: relative;
+    top: 3%;
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+
+}
+
+.month-change-last {
+    position: relative;
+    bottom: 5%;
+    /* font-family: 'Heebo'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90%;
+    text-align: center;
+    letter-spacing: 0.12em;
+    /* text-transform: uppercase; */
+    color: #203293;
+}
+
+.month-change-last:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.month-change-next {
+    position: relative;
+    bottom: 40%;
+    /* font-family: 'Heebo'; */
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90%;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #203293;
+}
+
+.month-change-next:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

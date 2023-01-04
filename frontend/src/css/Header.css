@@ -1,0 +1,52 @@
+.header-wrapper {
+    position: absolute;
+    width: 100vw;
+    height: 8vh;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    background: #c0def9;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    position: relative;
+    left: 15vw;
+
+    /* font-family: 'Lalezar'; */
+    font-style: normal;
+    font-weight: 800;
+    font-size: 5vh;
+    text-align: center;
+    letter-spacing: 0.12em;
+    /* text-transform: uppercase; */
+
+    color: #FFFFFF;
+}
+
+.left-menu-btn {
+    position: relative;
+    top: 3%;
+    left: 1%;
+}
+
+.left-menu-btn:hover {
+    cursor: pointer;
+}
+
+.photo-sticker {
+    position: relative;
+    width: 6vh;
+    height: 6vh;
+    right: 2vw;
+    /* top: 50%; */
+    border-radius: 50%;
+
+    background: #1F3CA3;
+}
+
+.photo-sticker:hover {
+    cursor: pointer;
+}

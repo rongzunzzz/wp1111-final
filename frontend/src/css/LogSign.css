@@ -1,0 +1,93 @@
+.LStitle {
+    /* Log In */
+    align-self: center;
+
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3vw;
+
+    background:linear-gradient(180deg, #0904F3 -20.57%, #c0d8ff 88.26%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent; 
+}
+
+.background {
+    /* Frame 6 */
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+
+    display: flex;
+    background: conic-gradient(from 180deg at 50% 50%, #DCE4FF 0deg, #E8F4FF 120deg, rgba(255, 255, 255, 0) 240deg, #FFFFFF 332.17deg, #DCE4FF 360deg);
+
+}
+
+.pack {
+    position: relative;
+    height: 60vh;
+    width: 20vw;
+    align-self: center;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.jumpTo {
+    position: relative;
+    width: 40%;
+    height: 8vh;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+
+    /* font-family: 'Archivo Black'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+
+    color: dodgerblue;
+}
+
+.jumpTo:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.enterBtn {
+    /* Rectangle 5 */
+
+    position: relative;
+    width: 40%;
+    height: 8vh;
+
+    background: linear-gradient(180deg, #C9DEFF 0%, #184FDC 100%);
+    border-radius: 15px;
+
+    /* font-family: 'Archivo Black'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+
+    color: #FFFFFF;
+}
+
+.input {
+    height: 6vh;
+    font-size: 3vh;
+    border-radius: 20px;
+}

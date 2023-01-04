@@ -1,0 +1,16 @@
+{
+  "name": "110-Final-Project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TsaiAmy/110-Final-Project.git",
+  "author": "rongzunzzz",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  }
+}
