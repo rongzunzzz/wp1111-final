@@ -5,12 +5,15 @@
   "repository": "https://github.com/TsaiAmy/110-Final-Project.git",
   "author": "rongzunzzz",
   "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server",
+    "install:prod": "cd frontend && yarn install --freeze-lockfile && cd ../backend && yarn install",
+    "build": "cd frontend && yarn build",
+    "deploy": "cd backend && yarn deploy"
+  },
   "dependencies": {
     "body-parser": "^1.20.1",
     "react-scripts": "^5.0.1"
-  },
-  "scripts": {
-    "start": "cd frontend && yarn start",
-    "server": "cd backend && yarn server"
   }
 }
