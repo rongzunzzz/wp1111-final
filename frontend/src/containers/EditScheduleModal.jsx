@@ -1,14 +1,18 @@
 // hooks, functions
 import { useState } from "react";
 import popMessage from "../utils/popMessage";
+import { usePlanner } from "../hooks/usePlanner";
 
 // styles
 import { Modal, Form, Input, DatePicker, TimePicker, Select } from "antd";
+
+import moment from "moment";
 
 const EditScheduleModal = ({ open, onCreate, onCancel }) => {
     const [form] = Form.useForm();
 
     const [date, setDate] = useState('');
+    const { startDate, endDate } = usePlanner();
     const [validTimeRange, setValidTimeRange] = useState(true);
 
     const onTimePickerChange = (e) => {
@@ -25,6 +29,10 @@ const EditScheduleModal = ({ open, onCreate, onCancel }) => {
         setDate(dateString);
     }
     const zIn = 20;
+
+    const limitedDate = (current) => {
+        return current < moment(startDate, "YYYY-MM-DD") ||  current > moment(endDate, "YYYY-MM-DD").add(1, 'd')
+    }
 
     return (
         <Modal 
@@ -76,7 +84,7 @@ const EditScheduleModal = ({ open, onCreate, onCancel }) => {
                         },
                     ]} 
                 >
-                    <DatePicker onChange={dateInput} />
+                    <DatePicker onChange={dateInput} disabledDate={limitedDate}/>
                 </Form.Item>
                 <Form.Item 
                     name="timeRange"

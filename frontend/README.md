@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# Web Programming 110-Final-Project Group 28
+# 專題名稱：拯救你的期末考
+## 簡介：
+期末考期間有一大堆的考試、作業、報告，很多人都在前一兩天急急忙忙的熬夜趕作業唸書，常常會懊悔自己為什麼不早點開始。我們設計了一個可以記錄課程與課程相關事項的行事曆，可以在行事曆上快速加入課程的待辦事項，也可以統一看到所有的課程需要繳交的項目。
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo 影片連結：
 
-## Available Scripts
+## Deploy 連結：
 
-In the project directory, you can run:
+## 安裝步驟：
+1. 將資料夾 clone 下來之後，在此資料夾執行 yarn install
+2. 分別進入 Frontend、Backend 資料夾執行 yarn install
+3. 於後端新增一個 .env 檔案，存入自己的 mongoDB 連結（已經有存好的 .env.defaults）
+3. 測試時在 Frontend 資料夾執行 yarn start，在 Backend 資料夾執行 yarn server。
+4. 打開 localhost:3000 即可使用前端功能
 
-### `npm start`
+## 登入帳號：
+如果不測試註冊功能，可以使用以下帳號密碼登入：
+帳號：
+密碼：
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 功能說明：
+此報告的說明比臉書會再詳細一些。
+### 登入、註冊
+1. 註冊帳號：沒有重複帳號後即可申請成功跳到登入頁，再執行登入。
+2. 初次登入時，會需要設定你的 NickName、想要排程的開始日期與結束日期。
+3. 設定完成後，每次重新登入都會是顯示已經存過的資料。
+4. 登入後可按右上角 Log Out 按鍵登出。
+### 選單切換
+左邊的選單可以切換 Calendar 頁面、Course 頁面、Setting 頁面。
+### 行事曆
+於 Planner 頁面：
+1. 新增行程：點按左上角 ADD 按鍵，輸入名稱、日期、時間、屬於特定課程的特定待辦事項（可以為非課程）、行程是否重複。
+    備註：新增行程只能在 Planner 設定的範圍內新增。
+2. 編輯行程：點按特定行程的鉛筆按鍵，修改行程內容（無法修改所屬的課程事項）。
+3. 刪除行程：點按特定行程的垃圾桶按鍵，將行程刪除。
+4. 點按行事曆左上角的 Last Week、Next Week，可以切換星期。
+6. 左邊的 Deadline 會顯示這個星期還沒過的待辦事項。
+### 新增課程與課程待辦事項
+於 Course 頁面：
+#### 課程
+1. 新增課程：點按左下角的加號按鍵，新增新的課程。
+2. 刪除課程：在課程格的右上角，點按刪除按鍵，將課程刪除。
+#### 課程待辦事項
+待辦事項有分為 Exam（大考：期中期末考）、Project（報告與專題）、HW（作業）、Quiz（小考）四種類型。並且可以設定待辦事項的截止日期 Due Date。
+1. 新增待辦事項：在課程格的右上角，點按加號按鍵，可以新增待辦事項。
+2. 待辦事項完成度：使用 Checkbox 確認是否完成。
+3. 刪除待辦事項：特定待辦事項的右邊有垃圾桶按鍵，可以刪除待辦事項。
+### 設定頁面
+1. 修改名字
+2. 修改 Planner 的日期範圍
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 使用的第三方框架、套件
+#### Frontend
+react, react-dom, react-router-dom, style-components, ant design, material-ui, axios, dayjs, moment
+#### Backend
+babel, cors, express, nodemon, mongoose, dotenv-defaults, moment 
+#### Database
+MongoDB
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 組員貢獻：
+李承軒：
+蔡宜蓁：
+黃戎僔：

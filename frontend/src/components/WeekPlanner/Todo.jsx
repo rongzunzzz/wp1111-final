@@ -34,8 +34,8 @@ const Todo = ({ fullDate, date, todos }) => {
 
     const isInScheduleRange = (startDate, endDate, sDate) => {
         return (moment(sDate).isBetween(startDate, endDate) ||
-                moment(sDate).isSame(startDate ||
-                moment(sDate).isSame(endDate))) 
+                moment(sDate).isSame(startDate) ||
+                moment(sDate).isSame(endDate)) 
     }
 
     return (

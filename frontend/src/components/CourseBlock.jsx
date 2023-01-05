@@ -1,5 +1,6 @@
 // hooks, functions
 import { useState } from 'react';
+import { usePlanner } from '../hooks/usePlanner';
 import { useUserInfo } from '../hooks/useUserInfo';
 import { useCourse } from '../hooks/useCourse';
 import popMessage from '../utils/popMessage';
@@ -10,12 +11,12 @@ import AddCourseTaskModal from "../containers/AddCourseTaskModal";
 // styles
 import '../css/Course.css'
 import styled from "styled-components";
-import { AutoComplete, Button, Card, Popconfirm, Checkbox } from "antd";
+import { Card, Popconfirm, Checkbox } from "antd";
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 
 //api
 import axios from '../api';
-import { fontSize } from '@mui/system';
+import { getAllSchedules } from '../Api/Schedule';
 
 
 const cardWrapper = {
@@ -39,18 +40,6 @@ const TaskText = styled.div`
     align-items: center;
     color: #203293;
 `;
-
-// const headStyle = {
-//     background:'#7CD0FF',
-//     fontFamily: 'Noto Serif',
-//     fontStyle: 'normal',
-//     fontWeight: '700',
-//     fontSize: '120%',
-//     textAlign: 'center',
-//     letterSpacing: '0.05em',
-//     textTransform: 'uppercase',
-//     color: '#FFFFFF'
-// }
 
 const courseBtnStyle = {
     color: 'white',
@@ -77,6 +66,7 @@ const CourseBlock = ({ courseId, courseName, color, tasks }) => {
     const [addCourseTaskModalOpen, setAddCourseTaskModalOpen] = useState(false);
     
     const { account } = useUserInfo();
+    const { setAllSchedules } = usePlanner();
     const { taskTypeList, 
             addCourseTask, 
             deleteCourse, deleteCourseTask,
@@ -203,7 +193,6 @@ const CourseBlock = ({ courseId, courseName, color, tasks }) => {
                             okText="Yes"
                             cancelText="No"
                         ><DeleteOutlined style={courseBtnStyle} /></Popconfirm>
-                        {/* <DeleteOutlined  onClick={handleDeleteCourse} style={btnStyle} /> */}
                         </>}
               activeTabKey={activeTabKey}
               onTabChange={(key) => {
@@ -213,7 +202,7 @@ const CourseBlock = ({ courseId, courseName, color, tasks }) => {
         </Card>
         <AddCourseTaskModal
             open={addCourseTaskModalOpen}
-            onCreate={ async (taskName, dueDate, type) => { 
+            onCreate={ async (taskName, dueDate, type, time) => { 
                 const {
                     data: {
                         success,
@@ -226,10 +215,16 @@ const CourseBlock = ({ courseId, courseName, color, tasks }) => {
                     dueDate,
                     taskName,
                     type,
+                    time,
                 }) 
 
                 if (success) {
-                    addCourseTask(taskId, courseName, taskName, dueDate, type);
+                    const { getSuccess, message, schedules } = await getAllSchedules(account);
+                    if (getSuccess) { // no need to pop message here
+                        setAllSchedules(schedules);
+                    }
+                    addCourseTask(taskId, courseName, taskName, dueDate, type, time);
+
                     setAddCourseTaskModalOpen(false);
                 }
                 popMessage(success, message);

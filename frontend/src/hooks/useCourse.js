@@ -1,5 +1,6 @@
 import { containerClasses } from "@mui/system";
 import { createContext, useContext, useEffect, useState } from "react";
+import moment from "moment";
 
 const CourseContext = createContext({    
     taskTypeList: [],
@@ -23,12 +24,13 @@ const makeCourse = (courseId, courseName, color) => ({
     tasks: [],
 })
 
-const makeTask = (taskId, taskName, dueDate, type) => ({
+const makeTask = (taskId, taskName, dueDate, type, time) => ({
     _id: taskId, 
     taskName: taskName, 
     dueDate: dueDate, 
     status: false, 
     type: type,
+    time: time,
 })
 
 const CourseProvider = (props) => {
@@ -48,10 +50,10 @@ const CourseProvider = (props) => {
         setAllCourses(newCourses);
     }
 
-    const addCourseTask = (taskId, courseName, taskName, dueDate, type) => {
+    const addCourseTask = (taskId, courseName, taskName, dueDate, type, time) => {
         const newAllCourses = allCourses.map((c) => {
             if (c.courseName === courseName) {
-                const newTask = makeTask(taskId, taskName, dueDate, type)
+                const newTask = makeTask(taskId, taskName, dueDate, type, time)
                 c.tasks.push(newTask);
             }
             return c;
@@ -69,11 +71,15 @@ const CourseProvider = (props) => {
                     dueDate: allCourses[i].tasks[j].dueDate, 
                     status: allCourses[i].tasks[j].status, 
                     type: allCourses[i].tasks[j].type,
+                    time: allCourses[i].tasks[j].time,
                 };
                 all.push(task);
             }
         }
-        return all;
+        const totalTask = all.sort((a, b) => {
+            return moment(a.dueDate).diff(b.dueDate);
+        })
+        return totalTask;
     }
 
     const deleteCourseTask = (courseName, taskId) => {

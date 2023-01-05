@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    over-flow: auto;
 `;
 
 const Text = styled.p`
@@ -53,7 +54,7 @@ const Overview = () => {
     return (
         <Wrapper>
             <Text>DEADLINES</Text>
-            <div style={{width: '85%'}}>
+            <div style={{width: '85%', overflow: 'auto'}}>
                 {allTasks.map((t, i) => {
                     if (moment(t.dueDate).isBetween(todayDate, currDates[6])  || moment(t.dueDate).isSame(todayDate) ) {
                         return (

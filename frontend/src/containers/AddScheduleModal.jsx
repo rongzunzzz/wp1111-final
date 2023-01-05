@@ -51,7 +51,7 @@ const AddScheduleModal = ({ open, onCreate, onCancel }) => {
     }
 
     const limitedDate = (current) => {
-        return current < moment(startDate, "YYYY-MM-DD") ||  current > moment(endDate, "YYYY-MM-DD")
+        return current < moment(startDate, "YYYY-MM-DD") ||  current > moment(endDate, "YYYY-MM-DD").add(1, 'd')
     }
 
     return (

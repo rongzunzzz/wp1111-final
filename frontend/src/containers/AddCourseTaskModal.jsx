@@ -11,6 +11,7 @@ const AddCourseTaskModal = ({ open, onCreate, onCancel }) => {
     const { taskTypeList } = useCourse();
 
     const typeOptions = taskTypeList.map((t) => ( { value: t, label: t.toUpperCase() } ))
+    const timeOptions = Array.from(Array(100).keys()).map((idx) => ({ value: idx + 1, label: idx + 1 }))
 
     const dateInput = (date, dateString) => {
         // console.log(date, dateString);
@@ -29,8 +30,8 @@ const AddCourseTaskModal = ({ open, onCreate, onCancel }) => {
                     .then((values) => {
                         form.resetFields();
                         
-                        const { taskName, dueDate, type } = values;
-                        onCreate(taskName, due, type);
+                        const { taskName, dueDate, type, time } = values;
+                        onCreate(taskName, due, type, time);
 
                     }).catch((e) => {
                         window.alert(e);
@@ -80,6 +81,26 @@ const AddCourseTaskModal = ({ open, onCreate, onCancel }) => {
                             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
                         }
                         options={typeOptions}
+                    />
+                </Form.Item>
+                <Form.Item 
+                    name="time"
+                    label="Enter the expected finished time of the task"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Error: Please enter expected finished time of the task!",
+                        },
+                    ]} 
+                >
+                    <Select
+                        showSearch
+                        placeholder="Select time"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                        }
+                        options={timeOptions}
                     />
                 </Form.Item>
             </Form>

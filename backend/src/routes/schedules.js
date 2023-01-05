@@ -66,12 +66,14 @@ const getSchedules = async(account) => {
 }
 
 const postSchedules = async(account, scheduleName, date, startTime, endTime, isRepeat, courseId, taskId) => {
+    console.log(account, scheduleName, date, startTime, endTime, isRepeat, courseId, taskId)
     let returnValue = {}
     const user = await User.findOne({"account": account});
     const course = await Course.findById(courseId);
     const task = await Task.findById(taskId);
     try {
         if (!user) {
+            console.log("no user")
             return {
                 success: false,
                 message: "schedules post failed: no such user!",
@@ -79,6 +81,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
         }
         if (courseId) {
             if (!course) {
+                console.log("no course")
                 return {
                     success: false,
                     message: "schedules post failed: no such course!",
@@ -92,6 +95,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
                 }
             }
             if (cpos === -1) {
+                console.log("schedules post failed: no such course under user!")
                 return {
                     success: false,
                     message: "schedules post failed: no such course under user!",
@@ -100,6 +104,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
         }
         if (taskId) {
             if (!task) {
+                console.log("no task")
                 return {
                     success: false,
                     message: "schedules post failed: no such task!",
@@ -113,6 +118,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
                 }
             }
             if (tpos === -1) {
+                console.log("schedules post failed: no such task under course!")
                 return {
                     success: false,
                     message: "schedules post failed: no such task under course!",
@@ -126,6 +132,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
         const startDate = user.startDate;
         const endDate = user.endDate;
         if (!((moment(date).isBetween(startDate, endDate)) || (moment(date).isSame(startDate)) || (moment(date).isSame(endDate)))) {
+            console.log("moment")
             return {
                 success: false,
                 message: `schedules post failed: date is not within user's startDate ${user.startDate} and endDate${user.endDate}!`,
@@ -133,8 +140,10 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
         }        
 
         if (isRepeat === "no repeat") {
+            console.log("no repeat")
             const newSchedule = new Schedule({scheduleName, date, startTime, endTime, courseId, taskId, color});
-            await newSchedule.save().then((schedule) => {
+            await newSchedule.save().then( (schedule) => {
+                console.log(schedule)
                 let allSchedules = user.allSchedules;
                 allSchedules.push(schedule._id);
                 User.updateOne({"account": account}, {allSchedules}, (err, res) => {
@@ -155,7 +164,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
                 newSchedules.push(newSchedule);
             }
             for (let i = 0; i < newSchedules.length; i++) {
-                await newSchedules[i].save().then((schedule) => {
+                await newSchedules[i].save().then( (schedule) => {
                     let allSchedules = user.allSchedules;
                     allSchedules.push(schedule._id);
                     User.updateOne({"account": account}, {allSchedules}, (err, res) => {
@@ -177,7 +186,7 @@ const postSchedules = async(account, scheduleName, date, startTime, endTime, isR
                 newSchedules.push(newSchedule);
             }
             for (let i = 0; i < newSchedules.length; i++) {
-                await newSchedules[i].save().then((schedule) => {
+                await newSchedules[i].save().then( (schedule) => {
                     let allSchedules = user.allSchedules;
                     allSchedules.push(schedule._id);
                     User.updateOne({"account": account}, {allSchedules}, (err, res) => {
@@ -318,4 +327,5 @@ router.post('/update', async(req, res) => {
     })
 })
 
+export { postSchedules };
 export default router;
