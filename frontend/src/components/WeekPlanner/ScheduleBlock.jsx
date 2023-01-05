@@ -120,7 +120,7 @@ const ScheduleBlock = ({ scheduleId, scheduleName, date, startTime, endTime, cou
                 <ScheduleWrapper style={{
                     position: 'absolute', height: `${scheduleLength}%`, top: `${scheduleHeight}%`, background: color,
                 }}>
-                    {scheduleLength < 4 ? <></>: <div style={scheduleNameText}>{scheduleName}</div>}
+                    <div style={scheduleNameText}>{scheduleLength > 4 ? scheduleName: "..."}</div>
                 </ScheduleWrapper>
             </Popover>
             <EditScheduleModal

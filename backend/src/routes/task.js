@@ -18,14 +18,18 @@ const isLap = (occupiedTimes, date, startTime, length, scheduleSpace) => {
     // console.log(occupiedTimes)
     for (let i = 0; i < occupiedTimes.length; i++) {
         const occupiedTime = occupiedTimes[i];
-        if (!moment(occupiedTime.date).isSame(date)) continue;
+        if (!moment(occupiedTime.date).isSame(moment(date).format("YYYY/MM/DD"))){
+            //console.log(`${occupiedTime.date} is not equel to ${date}`)
+            continue;            
+        } 
         //將scheduleSpace的間隔加上去
-        const os = startTime - scheduleSpace;
+        var os = startTime - scheduleSpace;
         if (os < 0) os = 0;
-        const oe = startTime + length + scheduleSpace;
+        var oe = startTime + length + scheduleSpace;
         if (oe > 24) oe = 24;
-        return (occupiedTime.startTime < oe) && (occupiedTime.endTime > os);
+        if ((occupiedTime.startTime < oe) && (occupiedTime.endTime > os)) return true;
     }
+    console.log(`date: ${date} startTime: ${startTime} length: ${length} scheduleSpace ${scheduleSpace}`)
     return false;
 }
 const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
@@ -40,7 +44,7 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
     try {
         const scheduleIds = user.allSchedules;
         var unfinished = task.time; //這個task還有多少時間沒被完成
-        console.log("first: "+unfinished)
+        //console.log("first: "+unfinished)
         var occupiedTimes = [] //紀錄被占用過的時間 
         const dueDate = task.dueDate;
         for (let i = 0; i < scheduleIds.length; i++) {//先將在日期範圍內的schedule取出來
@@ -55,7 +59,7 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                 endTime: schedule.endTime
             })
         }
-        // console.log(occupiedTimes)
+        console.log(occupiedTimes)
         var newScheduleList = [];
         //找在現在時間到task結束之前當天全空的最近的早上八點
         for (let d = today; (!moment(d).isAfter(dueDate)) && (unfinished > 0); d = moment(d).add(1, 'days').format("YYYY/MM/DD")) {
@@ -65,11 +69,11 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
             var pass = true;
             for (let i = 0; i < occupiedTimes.length; i++) {
                 const occupiedTime = occupiedTimes[i];
-                pass = !moment(d).isSame(occupiedTime.date);
+                pass = !moment(d).isSame(moment(occupiedTime.date));
+                if (!pass) break;
             }
             if (pass) {
-                console.log("pass: "+ pass)
-                console.log("d: "+ d)
+                console.log("pass1")
                 const newSchedule = new Schedule({ scheduleName: scheduleName, 
                                                    date: d, 
                                                    startTime: st, 
@@ -79,15 +83,16 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                                                    color: course.color, });
                 newScheduleList.push(newSchedule);
                 occupiedTimes.push({
-                    date: d,
+                    date: moment(d).format("YYYY/MM/DD"),
                     startTime: st,
                     endTime: st + length
                 });
+                //console.log(occupiedTimes);
                 unfinished -= length;
             }
         }
-        for (var scheduleSpace = initscheduleSpace ; (scheduleSpace >= 0) && (unfinished > 0); scheduleSpace--) { //間隔時間遞減
-            for (var scheduleLength = initscheduleLength; (scheduleLength > 0) && (unfinished > 0); scheduleLength--) { //每段schedule時間遞減
+        for (var scheduleLength = initscheduleLength; (scheduleLength > 0) && (unfinished > 0); scheduleLength--) { //每段schedule時間遞減
+            for (var scheduleSpace = initscheduleSpace ; (scheduleSpace >= 0) && (unfinished > 0); scheduleSpace--) { //間隔時間遞減
                 //找在現在時間到task結束之前早上八點到晚上十點之間最近的空時間，滿足scheduleSpace
                 for (let d = today; (!moment(d).isAfter(dueDate)) && (unfinished > 0); d = moment(d).add(1, 'days').format("YYYY/MM/DD")) {
                     const initSt = 8; //早上八點
@@ -97,6 +102,7 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                         if (scheduleLength < unfinished) length = scheduleLength;
                         var pass = !isLap(occupiedTimes, d, st, length, scheduleSpace);
                         if (pass) {
+                            console.log("pass2")
                             const newSchedule = new Schedule({ scheduleName: scheduleName, 
                                                                 date: d, 
                                                                 startTime: st, 
@@ -106,10 +112,11 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                                                                 color: course.color, });
                             newScheduleList.push(newSchedule);
                             occupiedTimes.push({
-                                date: d,
+                                date: moment(d).format("YYYY/MM/DD"),
                                 startTime: st,
                                 endTime: st + length
                             });
+                            //console.log(occupiedTimes);
                             unfinished -= length;
                             st += length + scheduleSpace - 1;
                         }
@@ -118,8 +125,8 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                 }
             }
         }
-        for (var scheduleSpace = initscheduleSpace ; (scheduleSpace >= 0) && (unfinished > 0); scheduleSpace--) { //間隔時間遞減
-            for (var scheduleLength = initscheduleLength; (scheduleLength > 0) && (unfinished > 0); scheduleLength--) { //每段schedule時間遞減
+        for (var scheduleLength = initscheduleLength; (scheduleLength > 0) && (unfinished > 0); scheduleLength--) { //每段schedule時間遞減
+            for (var scheduleSpace = initscheduleSpace ; (scheduleSpace >= 0) && (unfinished > 0); scheduleSpace--) { //間隔時間遞減
                 //找在現在時間到task結束之前最近的空時間，滿足scheduleSpace
                 for (let d = today; (!moment(d).isAfter(dueDate)) && (unfinished > 0); d = moment(d).add(1, 'days').format("YYYY/MM/DD")) {
                     const initSt = 0; //早上0點
@@ -129,6 +136,7 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                         if (scheduleLength < unfinished) length = scheduleLength;
                         var pass = !isLap(occupiedTimes, d, st, length, scheduleSpace);
                         if (pass) {
+                            console.log("pass3")
                             const newSchedule = new Schedule({ scheduleName: scheduleName, 
                                                                 date: d, 
                                                                 startTime: st, 
@@ -138,10 +146,11 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                                                                 color: course.color, });
                             newScheduleList.push(newSchedule);
                             occupiedTimes.push({
-                                date: d,
+                                date: moment(d).format("YYYY/MM/DD"),
                                 startTime: st,
                                 endTime: st + length
                             });
+                            //console.log(occupiedTimes);
                             unfinished -= length;
                             st += length + scheduleSpace - 1;
                         }
@@ -150,12 +159,16 @@ const autoAddSchedule = async(account, scheduleName, courseId, taskId) => {
                 }
             }
         }
-        if (unfinished != 0) return false;
+        if (unfinished != 0) {
+            console.log(unfinished);
+            return false};
+        console.log("occupiedTimes")
+        console.log(occupiedTimes)
         // console.log(newScheduleList)
         for (let i = 0; i < newScheduleList.length; i++) {
             const schedule = newScheduleList[i];
-            const newSchedule = new Schedule({  scheduleName: schedule.scheduleName, 
-                                                date: schedule.date, 
+            const newSchedule = new Schedule({  scheduleName: `${schedule.scheduleName}_${i}`, 
+                                                date: moment(schedule.date).format("YYYY/MM/DD"), 
                                                 startTime: schedule.startTime, 
                                                 endTime: schedule.endTime, 
                                                 courseId: schedule.courseId,

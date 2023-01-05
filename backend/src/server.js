@@ -28,16 +28,10 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-// connect DB
+// Connect DB
 db.connect();
-app.listen(port, () =>
-console.log(`Server loaded on port ${port}`)
-);
 
-
-
-
-
-
-
-
+// listen
+app.listen(port, () => {
+    console.log(`Server loaded on port ${port}`)
+})

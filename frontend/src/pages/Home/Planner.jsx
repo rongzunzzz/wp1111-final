@@ -58,10 +58,12 @@ const Planner = () => {
     }
 
     const handleLastWeek = () => {
+        getAllSchedules(account);
         setDaysForward(curr => curr - 7);
     }
 
     const handleNextWeek = () => {
+        getAllSchedules(account);
         setDaysForward(curr => curr + 7);
     }
 
@@ -118,8 +120,9 @@ const Planner = () => {
                         <CaretRightOutlined  style={{color: '#2031938c', cursor: 'pointer'}}
                                             onClick={handleNextWeek} /> */}
                     </div>
-                    <div style={{position: 'relative', left: '70vw', width: '6vw'}}>
-                        <p className="month-title-month">{numberToMonth(currMonth)}</p>
+                    <div style={{position: 'relative', left: '63vw', width: '6vw'}}>
+                        <span className="month-title-month">{currYear}</span>
+                        <span className="month-title-month">{numberToMonth(currMonth)}</span>
                     </div>
                 </div>
                 <div className="add-btn-frame">
